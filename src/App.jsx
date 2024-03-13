@@ -5,16 +5,31 @@ import Button from "./components/Button";
 import "./App.css";
 
 const initialState = {
-  inputValue: "",
-  current: "",
+  counter: 0,
+  todos: [
+    {
+      id: 1,
+      text: "One",
+    },
+    {
+      id: 2,
+      text: "Two",
+    }
+  ]
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "addItem":
+      const newCounter = state.counter + 1;
+      const newTodo = {
+        id: newCounter,
+        text: action.text,
+      }
       return {
-        ...state,
-        current: action.payload,
+        counter: newCounter,
+        todos: [...state.todos, newTodo]
+
       };
 
     default:
